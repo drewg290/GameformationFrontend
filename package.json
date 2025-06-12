@@ -1,5 +1,5 @@
 {
-  "name": "foobar",
+  "name": "gameformationfrontend",
   "type": "module",
   "scripts": {
     "dev": "vite",
