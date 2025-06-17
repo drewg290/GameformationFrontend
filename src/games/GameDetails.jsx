@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import useQuery from "../api/useQuery";
 import useMutation from "../api/useMutation";
-
+import { useState } from "react";
 export default function GameDetails() {
   const parms = useParams();
 
@@ -21,6 +21,7 @@ export default function GameDetails() {
           </section>
         </article>
         <ReviewList gameId={parms.id} />
+        <ReviewCreator gameId={parms.id} />
       </div>
     </>
   );
@@ -35,32 +36,58 @@ function ReviewList({ gameId }) {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading reviews: {error.message}</p>;
   if (!reviews?.length) return <p>No reviews found</p>;
-
   return (
-    <ul className="games-list">
+    <ul>
       {reviews.map((review) => (
         <ReviewListItem key={review.game_id} review={review} />
       ))}
+    </ul>
+  );
+}
+function ReviewCreator({ gameId }) {
+  const [title, setTitle] = useState("");
+  const [rating, setRating] = useState("");
+  const [content, setContent] = useState("");
 
-      <form>
+  const {
+    data: reviews,
+    loading,
+    error,
+  } = useQuery(`/reviews/${gameId}`, "reviews");
+
+  const { mutate } = useMutation("POST", "/reviews", ["reviews"]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutate({ title, rating, content, game_id: gameId });
+  };
+
+  return (
+    <ul className="games-list">
+      <form onSubmit={handleSubmit}>
         <div>
           <input
             type="text"
-            id="title"
-            name="q"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             placeholder="Enter a title here"
           />
-          <br></br>
+          <br />
           <input
             type="text"
-            id="title"
-            name="q"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
             placeholder="Enter Rating Out of 5"
           />
-          <br></br>
-          <input type="text" id="title" name="q" placeholder="Enter Review" />
-          <br></br>
-          <button>Submit</button>
+          <br />
+          <input
+            type="text"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="Enter Review"
+          />
+          <br />
+          <button type="submit">Submit</button>
         </div>
       </form>
     </ul>
