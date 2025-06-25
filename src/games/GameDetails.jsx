@@ -12,9 +12,9 @@ export default function GameDetails() {
     <>
       <hr></hr>
       <div className="game-details">
-        <article>
+        <article id = "game-description">
           <section className="game-sections">
-            <h2>{data.title}</h2>
+            <h1>{data.title}</h1>
           </section>
           <section className="book-sections">
             <h3>{data.description}</h3>
@@ -37,7 +37,7 @@ function ReviewList({ gameId }) {
   if (error) return <p>Error loading reviews: {error.message}</p>;
   if (!reviews?.length) return <p>No reviews found</p>;
   return (
-    <ul>
+    <ul id="gamereview">
       {reviews.map((review) => (
         <ReviewListItem key={review.game_id} review={review} />
       ))}
@@ -63,7 +63,7 @@ function ReviewCreator({ gameId }) {
   };
 
   return (
-    <ul className="games-list">
+    <ul className="reviewcreator">
       <form onSubmit={handleSubmit}>
         <div>
           <input
@@ -97,9 +97,9 @@ function ReviewCreator({ gameId }) {
 function ReviewListItem({ review }) {
   return (
     <li className="game-item">
-      <h3>
+      <h2 className = "review-title">
         {review.title} {review.rating}/5
-      </h3>
+      </h2>
       <h4>{review.content}</h4>
     </li>
   );

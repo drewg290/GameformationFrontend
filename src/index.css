@@ -1,0 +1,40 @@
+#navbar {
+  display: flex;
+  
+  justify-content: end;
+  gap: 5ch;
+  align-items: center;
+  margin-right:5%;
+}
+html {
+  font-family: arial;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+#gamereview {
+  border: 2px solid black;
+  margin-left: 30%;
+  display:inline-block;
+  padding: 0 5%;
+}
+
+#game-description {
+  border: 5px solid black;
+  padding: 5%;
+  background-color: black;
+  color: white;
+}
+.reviewcreator {
+  margin-left: 30%;
+}
+.review-title {
+    text-decoration:underline;
+}
+.game-sections {
+    font-size:20pt;
+}
