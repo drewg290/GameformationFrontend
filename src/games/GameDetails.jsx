@@ -2,6 +2,8 @@ import { useParams } from "react-router";
 import useQuery from "../api/useQuery";
 import useMutation from "../api/useMutation";
 import { useState } from "react";
+import { useAuth } from "../auth/AuthContext";
+
 export default function GameDetails() {
   const parms = useParams();
 
@@ -12,7 +14,7 @@ export default function GameDetails() {
     <>
       <hr></hr>
       <div className="game-details">
-        <article id = "game-description">
+        <article id="game-description">
           <section className="game-sections">
             <h1>{data.title}</h1>
           </section>
@@ -49,45 +51,54 @@ function ReviewCreator({ gameId }) {
   const [rating, setRating] = useState("");
   const [content, setContent] = useState("");
 
-  const {
-    data: reviews,
-    loading,
-    error,
-  } = useQuery(`/reviews/${gameId}`, "reviews");
+  const { token } = useAuth();
 
   const { mutate } = useMutation("POST", "/reviews", ["reviews"]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!token) {
+      alert("You must be logged in to submit a review");
+      return;
+    }
     mutate({ title, rating, content, game_id: gameId });
+    window.location.reload();
   };
 
   return (
     <ul className="reviewcreator">
       <form onSubmit={handleSubmit}>
         <div>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Enter a title here"
-          />
-          <br />
-          <input
-            type="text"
-            value={rating}
-            onChange={(e) => setRating(e.target.value)}
-            placeholder="Enter Rating Out of 5"
-          />
-          <br />
-          <input
+          <div className="reviewTop">
+            <input
+              className="reviewcreate-title"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Enter a title here"
+            />
+            <br />{" "}
+            <input
+              className="reviewcreate-rating"
+              type="text"
+              value={rating}
+              onChange={(e) => setRating(e.target.value)}
+              placeholder="Enter Rating Out of 5"
+            />
+            <br />
+          </div>
+          <textarea
+            className="reviewcreate-review"
             type="text"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Enter Review"
           />
           <br />
-          <button type="submit">Submit</button>
+
+          <button className="submit-button" type="submit">
+            Submit
+          </button>
         </div>
       </form>
     </ul>
@@ -97,7 +108,7 @@ function ReviewCreator({ gameId }) {
 function ReviewListItem({ review }) {
   return (
     <li className="game-item">
-      <h2 className = "review-title">
+      <h2 className="review-title">
         {review.title} {review.rating}/5
       </h2>
       <h4>{review.content}</h4>

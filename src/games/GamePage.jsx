@@ -1,17 +1,35 @@
 import GameList from "./GameList";
+import { useState } from "react";
 
 export default function GamePage() {
+  const [search, setSearch] = useState("");
+
+  const onSearchChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const onSearchSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <>
       <hr></hr>
-      <h3>Gameformation</h3>
-      <form>
+
+      <form id="searchbar" onSubmit={onSearchSubmit}>
         <div>
-          <input type="search" id="mySearch" name="q" />
-          <button>Search</button>
+          <input
+            type="search"
+            id="mySearch"
+            name="q"
+            value={search}
+            onChange={onSearchChange}
+            placeholder="Search games..."
+          />
         </div>
       </form>
-      <GameList />
+
+      <GameList search={search} />
     </>
   );
 }

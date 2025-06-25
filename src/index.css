@@ -29,11 +29,32 @@ a {
   background-color: black;
   color: white;
 }
+.reviewTop {
+  display: flex;
+}
 .reviewcreator {
   margin-left: 30%;
+  margin-bottom: 10%;
 }
+.reviewcreate-title {
+  font-size: 15pt;
+  width: 19vw;
+}
+.reviewcreate-review {
+  font-size: 10pt;
+  width: 30vw;
+  height: 20vh;
+  font-family: arial;
+}
+.reviewcreate-rating {
+  font-size: 10pt;
+}
+
 .review-title {
   text-decoration: underline;
+}
+.submit-button {
+  padding: 2% 21%;
 }
 .game-sections {
   font-size: 20pt;
@@ -42,4 +63,13 @@ a {
   width: 20vw;
   margin: auto;
   margin-left: 0;
+}
+
+#mySearch {
+  font-size: 20pt;
+}
+#searchbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

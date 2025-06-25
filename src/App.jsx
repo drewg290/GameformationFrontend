@@ -8,13 +8,11 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-       
-         <Route index element={<GamePage />} />
+        <Route index element={<GamePage />} />
         <Route path="/games" element={<GamePage />} />
         <Route path="/games/:id" element={<GameDetails />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        
       </Route>
     </Routes>
   );
