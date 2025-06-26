@@ -107,20 +107,19 @@ function ReviewCreator({ gameId }) {
 
 function ReviewListItem({ review }) {
   return (
-    <li className="game-item">
-      <img className = "guestpfp"src = "/download.png"/>
-      
-      <div className = "reviews">
-        <section >
-        <h3 >{review.username}</h3>
-        <p > Rating: {review.rating}/5</p>
+    <li className="review">
+      <img className="guestpfp" src="/download.png" />
+
+      <div className="reviews">
+        <section>
+          <h3>{review.username}</h3>
+          <p> Rating: {review.rating}/5</p>
         </section>
         <section>
-        <h2 className="review-title" >{review.title}</h2>
-        <p >{review.content}</p>
+          <h2 className="review-title">{review.title}</h2>
+          <p>{review.content}</p>
         </section>
       </div>
-      
     </li>
   );
 }

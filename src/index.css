@@ -22,6 +22,7 @@ a {
   margin: 0 auto;
   width: fit-content;
   flex-direction: column;
+  padding-left: 0;
 }
 
 #game-description {
@@ -120,4 +121,9 @@ a {
   display: flex;
   flex-direction: column;
   gap: 0.5ch;
+}
+
+.review {
+  display: flex;
+  border-bottom: 2px solid black;
 }
