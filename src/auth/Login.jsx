@@ -22,7 +22,7 @@ export default function Login() {
   };
 
   return (
-    <>
+    <div className = "login-page">
       <h1>Log in to your account</h1>
       <form action={onLogin}>
         <label>
@@ -37,6 +37,6 @@ export default function Login() {
         {error && <output>{error}</output>}
       </form>
       <Link to="/register">Need an account? Register here.</Link>
-    </>
+    </div>
   );
 }
