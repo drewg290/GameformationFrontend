@@ -16,7 +16,7 @@ export default function GameDetails() {
       <div className="game-details">
         <article id="game-description">
           <section className="game-sections">
-            <h1>{data.title}</h1>
+            <h1 className="game-title">{data.title}</h1>
           </section>
           <section className="book-sections">
             <h3>{data.description}</h3>
@@ -108,14 +108,19 @@ function ReviewCreator({ gameId }) {
 function ReviewListItem({ review }) {
   return (
     <li className="game-item">
-<img className = "guestpfp" src = "/download.png"/>
-      <div>
-      <h2 className="review-title">
-        {review.title} {review.rating}/5
-      </h2>
-      <h4>{review.content}</h4>
+      <img className = "guestpfp"src = "/download.png"/>
+      
+      <div className = "reviews">
+        <section >
+        <h3 >{review.username}</h3>
+        <p > Rating: {review.rating}/5</p>
+        </section>
+        <section>
+        <h2 className="review-title" >{review.title}</h2>
+        <p >{review.content}</p>
+        </section>
       </div>
-
+      
     </li>
   );
 }

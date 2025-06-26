@@ -18,8 +18,10 @@ a {
 
 #gamereview {
   border: 2px solid black;
-  margin-left: 30%;
-  display: inline-block;
+  display: flex;
+  margin: 0 auto;
+  width: fit-content;
+  flex-direction: column;
 }
 
 #game-description {
@@ -78,8 +80,23 @@ a {
   gap: 2ch;
 }
 .guestpfp {
-  width: 3vw;
-  height: 3%;
-  margin-top: 2%;
+  width: 5vw;
+  height: 10vh;
+  margin-top: 4%;
   margin-right: 2%;
+}
+.game-title {
+  font-size: 40pt;
+}
+.reviewtitleandrating {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2ch;
+  margin-top: 2%;
+}
+
+.reviews {
+  margin-top: 3%;
+  display: flex;
+  gap: 5ch;
 }
