@@ -6,7 +6,7 @@ export default function Navbar() {
   const { token, logout } = useAuth();
   return (
     <header id="navbar">
-      <img src="../public/logo.png" id="logo" />
+      <img src="logo.png" id="logo" />
       <NavLink id="brand" to="/">
         <p>Home</p>
       </NavLink>
